@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}" >
+
+<head>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+
+    <body>
+    <h2 th:text="${msg}"></h2>
+
+    <h3>All User Info</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Gender</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${allUser}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.phone}"></td>
+                    <td th:text="${user.gender}"></td>
+                    <td><a th:href="@{'/user/delete/'+${user.id}}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    <a th:href="@{/user/add}">ADD NEW USER</a>
+    </body>
+</div>
+</body>
+</html>

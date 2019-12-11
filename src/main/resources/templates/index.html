@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}" >
+
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+    <title>Spring Boot With Thymeleaf</title>
+</head>
+<body>
+    <div layout:fragment="content" class="container">
+
+        <body>
+        <h3>ADD User Info</h3>
+        <form  th:action="@{/user/save}" th:object="${user}" method="POST" >
+            <label>Name</label>
+            <input type="text"  th:field="*{name}"/>
+            <label th:if="${#fields.hasErrors('name') }" th:class="error">Enter Valid Name Plz</label>
+            <br>
+            <label>Phone</label>
+            <input type="text" th:field="*{phone}"/>
+            <label th:if="${#fields.hasErrors('phone') }" th:class="error">Enter Valid phone no. Plz</label>
+            <br>
+            <label>Gender</label>
+            <select th:field="*{gender}">
+                <option th:each="gen : ${genders}" th:text="${gen}" th:value="${gen}"></option>
+            </select>
+            <input type="submit" th:value="Save" />
+        </form>
+        <a th:href="@{/user/getAll}">VIEW ALL USER</a>
+        </body>
+    </div>
+</body>
+</html>
