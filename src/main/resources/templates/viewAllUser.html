@@ -3,8 +3,13 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/main_layout}" >
 
-<head>
-</head>
+
+    <head>
+        <link href="/webjars/bootstrap/3.3.6/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}" />
+        <script src="/webjars/jquery/1.9.1/jquery.min.js" th:src="@{/webjars/jquery/1.9.1/jquery.min.js}" ></script>
+        <script src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
+        <script src="/webjars/bootstrap-datepicker/1.0.1/js/bootstrap-datepicker.js" th:src="@{/webjars/bootstrap-datepicker/1.0.1/js/bootstrap-datepicker.js}"></script>
+    </head>
 <body>
 <div layout:fragment="content" class="container">
 
@@ -32,6 +37,13 @@
                 </tr>
             </tbody>
         </table>
+    <hr>
+    <ul>
+        <li th:each="i: ${#numbers.sequence(0,allUser.totalPages-1)}">
+
+            <a class="nav-link" th:href="@{'/user/getAll?page='+${i}+'&sort_by=name' }" th:text="${i}" th:classappend="${currentPage}==${i} ? 'active' : ''  "></a>
+        </li>
+    </ul>
     <a th:href="@{/user/add}">ADD NEW USER</a>
     </body>
 </div>

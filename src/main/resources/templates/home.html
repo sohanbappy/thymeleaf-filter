@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}" >
+<head>
+    <title>Home Page</title>
+</head>
+<body>
+<div  layout:fragment="content" >
+<!--    It's not working-->
+    <div class="">
+        <p>Welcome to thymeleaf!</p>
+        <a th:href="@{/user/add}">ADD NEW USER</a>
+    </div>
+</div>
+</body>
+</html>
