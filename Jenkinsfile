@@ -2,7 +2,7 @@ node {
    
    stage('SCM Checkout'){
     // Clone repo
-	url: 'https://github.com/sohanbappy/device-monitor'
+	url: 'https://github.com/sohanbappy/thymeleaf-filter-pagination'
    
     }
        stage('Mvn Package'){
