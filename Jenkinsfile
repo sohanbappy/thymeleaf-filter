@@ -1,32 +1,43 @@
+ 
 pipeline {
-    agent any
+   agent any
 
-    stages {
-        stage ('Compile Stage') {
+   tools {
+      // Install the Maven version configured as "M3" and add it to the path.
+      maven "maven-3"
+   }
 
-            steps {
-                withMaven(maven : 'maven-3') {
-                    sh 'mvn clean compile'
-                }
-            }
-        }
+   stages {
+      stage('Build') {
+         steps {
+            // Get some code from a GitHub repository 
+            git 'https://github.com/sohanbappy/thymeleaf-filter-pagination.git'
+            sh "mvn -Dmaven.test.failure.ignore=true clean compile"
+         }
+         }
+      stage("Test") {
+          steps {
+            git 'https://github.com/sohanbappy/thymeleaf-filter-pagination.git'  
+            sh "mvn -Dmaven.test.failure.ignore=true clean test"
+            
+          }
 
-        stage ('Testing Stage') {
+      }
+      stage("Deploy") {
+          steps {
+            git 'https://github.com/sohanbappy/thymeleaf-filter-pagination.git'  
+            sh "mvn -Dmaven.test.failure.ignore=true clean install"
+            
+          }
+          post {
+              success {
+                  archiveArtifacts 'target/*.jar'
+              }
 
-            steps {
-                withMaven(maven : 'maven-3') {
-                    sh 'mvn test'
-                }
-            }
-        }
+          }
 
 
-        stage ('Deployment Stage') {
-            steps {
-                withMaven(maven : 'maven-3') {
-                    sh 'mvn deploy'
-                }
-            }
-        }
-    }
-}
+      }
+
+      }
+   }
