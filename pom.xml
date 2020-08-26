@@ -13,7 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>thyme-pagination</name>
-	<description>Demo project for Spring Boot using thymeleaf</description>
+	<description>Demo project for Spring Boot using thymeleaf and Jenkins</description>
 
 	<properties>
 		<java.version>1.8</java.version>
